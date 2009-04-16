@@ -30,8 +30,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import sun.awt.WindowClosingListener;
-
 import com.mui.MavenGUIContext;
 import com.mui.MavenGuiConstants;
 import com.mui.gui.comp.MavenMenuBar;
