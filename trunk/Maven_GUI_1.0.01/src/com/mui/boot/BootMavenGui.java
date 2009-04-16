@@ -20,9 +20,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Map;
 import java.util.Properties;
-import java.util.PropertyResourceBundle;
-import java.util.ResourceBundle;
-
 
 import com.mui.BootLoaderException;
 import com.mui.ContextLoadException;
@@ -79,8 +76,9 @@ public class BootMavenGui {
 		MavenEnvironmentVariables initialVars = new MavenEnvironmentVariables();
 		// TODO: need to do exception handling 
 		Properties properties = new Properties();
-		properties.load(new FileInputStream(
-				new File(MavenGuiConstants.PROPERTIES_FILE_NAME + "maven_env.properties")));
+		properties.load(new FileInputStream(MavenGuiConstants.PROPERTIES_FILE_NAME
+                + "maven_env.properties"));
+				//new File(MavenGuiConstants.PROPERTIES_FILE_NAME + "maven_env.properties")));
 		
 		MAVEN_HOME = properties.getProperty("MAVEN_HOME");
 		JAVA_HOME = properties.getProperty("JAVA_HOME");
@@ -137,7 +135,8 @@ public class BootMavenGui {
 	}
 
 	private static void loadInitialContext() throws ContextLoadException{
-		File contextFile = new File(MavenGuiConstants.CONTEXT_FILE_NAME + "maven_context.ctx");
+		File contextFile = new File(MavenGuiConstants.CONTEXT_FILE_NAME +
+                "maven_context.ctx");
 		if(contextFile.exists()){
 			ObjectInputStream objectInputStream = null;
 			try{
