@@ -52,7 +52,7 @@ public class MavenGUIActionListener implements ActionListener, MavenGuiConstants
 		actionPerformed(event);
 	}
 	
-	@Override
+
 	public void actionPerformed(ActionEvent event) {
 		if(event == null)
 			return;
