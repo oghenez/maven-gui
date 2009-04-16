@@ -22,10 +22,10 @@ import java.net.URL;
 public interface MavenGuiConstants {
 
 	String CONTEXT_FILE_NAME = MavenGuiConstants.class
-			.getResource("/com/mui/").getPath().toString();
+			.getResource("/context/").getPath().toString();
 	
 	String PROPERTIES_FILE_NAME = MavenGuiConstants.class
-			.getResource("/").getPath().toString();
+			.getResource("/properties/").getPath().toString();
 	
 	String APP_HOME_DIR_NAME = MavenGuiConstants.class
 			.getResource("/").getPath().toString();
@@ -33,7 +33,7 @@ public interface MavenGuiConstants {
 	String NA = "NA";
 
 	URL IMAGE_LOCATION_URL = MavenGuiConstants.class
-			.getResource("/com/mui/gui/images/");
+			.getResource("/images/");
 	String IMAGE_PATH = IMAGE_LOCATION_URL.getPath().toString();
 
 	// Action commands
