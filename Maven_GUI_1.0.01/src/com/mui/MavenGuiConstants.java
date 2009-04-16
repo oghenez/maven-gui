@@ -22,10 +22,10 @@ import java.net.URL;
 public interface MavenGuiConstants {
 
 	String CONTEXT_FILE_NAME = MavenGuiConstants.class
-			.getResource("/com/mui/").getPath().toString();
+			.getResource("./").getPath().toString();
 	
 	String PROPERTIES_FILE_NAME = MavenGuiConstants.class
-        .getResource("/").getPath().toString();
+        .getResource("./").getPath().toString();
 	
 	String NA = "NA";
 
