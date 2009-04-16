@@ -78,7 +78,7 @@ public class ProjectTypePanelDescriptor extends WizardPanelDescriptor  implement
     	
     }
 
-	@Override
+	
 	public void valueChanged(ListSelectionEvent arg0) {
 		setNextButtonAccordingToListSelection();
 		

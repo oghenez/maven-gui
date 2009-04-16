@@ -22,10 +22,10 @@ import java.net.URL;
 public interface MavenGuiConstants {
 
 	String CONTEXT_FILE_NAME = MavenGuiConstants.class
-			.getResource("/context/").getPath().toString();
+			.getResource("context/").getPath().toString();
 	
 	String PROPERTIES_FILE_NAME = MavenGuiConstants.class
-			.getResource("/properties/").getPath().toString();
+			.getResource("properties/").getPath().toString();
 	
 	String APP_HOME_DIR_NAME = MavenGuiConstants.class
 			.getResource("/").getPath().toString();
