@@ -76,15 +76,16 @@ public class BootMavenGui {
 		MavenEnvironmentVariables initialVars = new MavenEnvironmentVariables();
 		// TODO: need to do exception handling 
 		Properties properties = new Properties();
-		properties.load(new FileInputStream(MavenGuiConstants.PROPERTIES_FILE_NAME
-                + "maven_env.properties"));
-				//new File(MavenGuiConstants.PROPERTIES_FILE_NAME + "maven_env.properties")));
+        File propFile = new File(MavenGuiConstants.PROPERTIES_FILE_NAME);
+        if(propFile.exists()){
+            properties.load(new FileInputStream(propFile));
+            MAVEN_HOME = properties.getProperty("MAVEN_HOME");
+            JAVA_HOME = properties.getProperty("JAVA_HOME");
+            USER_HOME = properties.getProperty("USER_HOME");
+            USER_DIR = properties.getProperty("USER_DIR");
+            M2_HOME = properties.getProperty("M2_HOME");
+        }
 		
-		MAVEN_HOME = properties.getProperty("MAVEN_HOME");
-		JAVA_HOME = properties.getProperty("JAVA_HOME");
-		USER_HOME = properties.getProperty("USER_HOME");
-		USER_DIR = properties.getProperty("USER_DIR");
-		M2_HOME = properties.getProperty("M2_HOME");
 
 		if (MAVEN_HOME != null && MAVEN_HOME.trim().length() > 0) {
 			initialVars.addEnvironmentVariable(MavenEnvironmentConstants.MAVEN_HOME_VAR_NAME, MAVEN_HOME, true);
@@ -135,8 +136,7 @@ public class BootMavenGui {
 	}
 
 	private static void loadInitialContext() throws ContextLoadException{
-		File contextFile = new File(MavenGuiConstants.CONTEXT_FILE_NAME +
-                "maven_context.ctx");
+		File contextFile = new File(MavenGuiConstants.CONTEXT_FILE_NAME);
 		if(contextFile.exists()){
 			ObjectInputStream objectInputStream = null;
 			try{
