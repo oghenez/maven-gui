@@ -21,11 +21,9 @@ import java.net.URL;
  */
 public interface MavenGuiConstants {
 
-	String CONTEXT_FILE_NAME = MavenGuiConstants.class
-			.getResource("./").getPath().toString();
+	String CONTEXT_FILE_NAME = "./maven_context.ctx";
 	
-	String PROPERTIES_FILE_NAME = MavenGuiConstants.class
-        .getResource("./").getPath().toString();
+	String PROPERTIES_FILE_NAME = "./maven_env.properties";
 	
 	String NA = "NA";
 
