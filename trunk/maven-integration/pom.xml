@@ -27,6 +27,13 @@
 			<scope>system</scope>
 			<systemPath>${libs.dir}/maven-2.0.8-uber.jar</systemPath>
 		</dependency>
+		<dependency>
+			<groupId>maven.cli</groupId>
+			<artifactId>maven-cli</artifactId>
+			<version>1.1</version>
+			<scope>system</scope>
+			<systemPath>${libs.dir}/classworlds-1.1.jar</systemPath>
+		</dependency>
 	</dependencies>
 
 	<properties>
