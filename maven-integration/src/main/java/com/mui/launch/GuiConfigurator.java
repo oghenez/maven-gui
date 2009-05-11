@@ -21,8 +21,8 @@ import org.codehaus.classworlds.NoSuchRealmException;
 
 public class GuiConfigurator {
 
-	public static final String MAIN_CLASS_NAME = "org.apache.maven.cli.MavenCli";
-	public static final String MAIN_REALM_NAME = "plexus.core";
+	public static final String MAIN_CLASS_NAME = "com.mui.launch.MavenGui";
+	public static final String MAIN_REALM_NAME = "com.mui";
 	public static final String MAVEN_HOME = "c:\\conf";
 
 	private GuiLauncher guiLauncher;
@@ -60,6 +60,7 @@ public class GuiConfigurator {
 
 		curRealm = world.newRealm(MAIN_REALM_NAME, foreignClassLoader);
 		configuredRealms.put(MAIN_REALM_NAME, curRealm);
+		//TODO : need to change
 		String line = "c:/conf/lib/*.jar";
 		String constituent = "c:/conf/lib/*.jar";
 		if (constituent.indexOf("*") >= 0) {

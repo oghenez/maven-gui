@@ -10,13 +10,15 @@ import javax.swing.JOptionPane;
 
 import org.apache.log4j.Level;
 
+import com.mui.MavenCommonContext;
+import com.mui.MavenGUILauncher;
 import com.mui.integration.MavenIntegration;
 import com.mui.integration.impl.MavenIntegrationImpl;
-import com.mui.logger.MavenLogger;
-import com.mui.logger.device.TextAreaLogDevice;
+import com.mui.launch.GuiLauncher;
+import com.mui.logger.device.TextAreaLogAppender;
 
 public class TestFrame extends JFrame{
-	MavenLogger logger = new MavenLogger(0, "Test Logger");
+	private static MavenCommonContext context = MavenCommonContext.getInstance();
     /** Creates new form NewJFrame */
     public TestFrame() {
         initComponents();
@@ -24,9 +26,8 @@ public class TestFrame extends JFrame{
     }
 
     private void initLogger() {
-		TextAreaLogDevice device = new TextAreaLogDevice(this.outputTextArea);
-		logger.init(device, Level.ALL);
-		logger.logInfo("Logger initilized...");
+		TextAreaLogAppender device = new TextAreaLogAppender(this.outputTextArea);
+		context.textAreaLogAppender = device;
 	}
 
 	/** This method is called from within the constructor to
@@ -176,9 +177,7 @@ public class TestFrame extends JFrame{
 	private void runCommand(){
 		if((baseDirTextField.getText() != null && !baseDirTextField.getText().equals(""))
 				&& (cmdTextField.getText() != null && !cmdTextField.getText().equals(""))){
-			MavenIntegration mi = new MavenIntegrationImpl();
-			mi.execuiteCommand(baseDirTextField.getText(), cmdTextField.getText(),
-					logger);
+			GuiLauncher.main(new String[]{""});
 		}
 			
 	}

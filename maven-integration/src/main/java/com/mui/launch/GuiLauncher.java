@@ -24,10 +24,10 @@ public class GuiLauncher {
 		args = new String[]{"install"};
 		try {
 			int exitCode = mainWithExitCode(args);
-			System.exit(exitCode);
+			//System.exit(exitCode);
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.exit(100);
+			//System.exit(100);
 		}
 	}
 
@@ -81,10 +81,11 @@ public class GuiLauncher {
 		Method mainMethod = getEnhancedMainMethod();
 		ClassLoader cl = mainRealm.getClassLoader();
 		Thread.currentThread().setContextClassLoader(cl);
-		Object ret = mainMethod.invoke(mainClass, new Object[] { args,
+		exitCode = MavenGui.main(args, getWorld());
+		/*Object ret = mainMethod.invoke(mainClass, new Object[] { args,
 				getWorld() });
 		if (ret instanceof Integer)
-			exitCode = ((Integer) ret).intValue();
+			exitCode = ((Integer) ret).intValue();*/
 	}
 
 	protected void launchStandard(String args[]) throws ClassNotFoundException,
@@ -95,9 +96,10 @@ public class GuiLauncher {
 		Method mainMethod = getMainMethod();
 		Thread.currentThread()
 				.setContextClassLoader(mainRealm.getClassLoader());
-		Object ret = mainMethod.invoke(mainClass, new Object[] { args });
-		if (ret instanceof Integer)
-			exitCode = ((Integer) ret).intValue();
+		//Object ret = mainMethod.invoke(mainClass, new Object[] { args });
+		exitCode = MavenGui.main(args, getWorld());
+		//if (ret instanceof Integer)
+			//exitCode = ((Integer) ret).intValue();
 	}
 
 	public void configure() throws MalformedURLException,
