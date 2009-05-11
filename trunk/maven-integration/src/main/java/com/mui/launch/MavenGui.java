@@ -52,7 +52,6 @@ import org.codehaus.plexus.util.Os;
 import org.codehaus.plexus.util.cli.CommandLineUtils;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 
-import com.mui.MavenCommonContext;
 import com.mui.logger.TextAreaLoggerManager;
 
 public class MavenGui {
