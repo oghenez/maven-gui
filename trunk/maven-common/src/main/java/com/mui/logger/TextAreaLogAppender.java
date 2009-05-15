@@ -17,7 +17,6 @@ public class TextAreaLogAppender extends WriterAppender{
 		this.layout = new FlexibleLayout();
 	}
 	
-	@Override
 	public void append(LoggingEvent event) {
 		final String message = this.layout.format(event);
 		SwingUtilities.invokeLater(new Runnable() {

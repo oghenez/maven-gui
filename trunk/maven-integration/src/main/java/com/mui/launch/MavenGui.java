@@ -53,6 +53,7 @@ import org.codehaus.plexus.util.cli.CommandLineUtils;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 
 import com.mui.logger.TextAreaLoggerManager;
+import com.mui.*;
 
 public class MavenGui {
 
@@ -187,6 +188,10 @@ public class MavenGui {
 				loggerManager = (LoggerManager) taManager;
 			}
 			
+			/*TextAreaLoggerManager taManager = new TextAreaLoggerManager("info");
+			//embedder.addContextValue(key, value)
+			loggerManager = (LoggerManager) taManager;*/
+			embedder.setLoggerManager(loggerManager);
 
 			if (debug) {
 				loggerManager.setThreshold(Logger.LEVEL_DEBUG);
