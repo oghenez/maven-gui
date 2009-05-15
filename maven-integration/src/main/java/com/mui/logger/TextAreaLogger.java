@@ -4,6 +4,8 @@ import org.apache.log4j.Level;
 import org.codehaus.plexus.logging.AbstractLogger;
 import org.codehaus.plexus.logging.Logger;
 
+import com.mui.MavenCommonContext;
+
 
 public class TextAreaLogger extends AbstractLogger {
 

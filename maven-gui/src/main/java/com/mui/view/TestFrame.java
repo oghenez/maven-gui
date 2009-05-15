@@ -12,10 +12,10 @@ import org.apache.log4j.Level;
 
 import com.mui.MavenCommonContext;
 import com.mui.MavenGUILauncher;
-import com.mui.device.TextAreaLogAppender;
 import com.mui.integration.MavenIntegration;
 import com.mui.integration.impl.MavenIntegrationImpl;
 import com.mui.launch.GuiLauncher;
+import com.mui.logger.TextAreaLogAppender;
 
 public class TestFrame extends JFrame{
 	private static MavenCommonContext context = MavenCommonContext.getInstance();
@@ -177,6 +177,7 @@ public class TestFrame extends JFrame{
 	private void runCommand(){
 		if((baseDirTextField.getText() != null && !baseDirTextField.getText().equals(""))
 				&& (cmdTextField.getText() != null && !cmdTextField.getText().equals(""))){
+			System.setProperty("user.dir", baseDirTextField.getText());
 			GuiLauncher.main(new String[]{""});
 		}
 			
