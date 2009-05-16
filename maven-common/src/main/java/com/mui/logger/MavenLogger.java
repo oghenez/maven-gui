@@ -57,4 +57,8 @@ public class MavenLogger{
 	public static void warn(String message, Throwable t) {
 		logger.warn(message, t);
 	}
+
+	public static void info(String message) {
+		logger.info(message);
+	}
 }

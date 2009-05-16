@@ -8,17 +8,15 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import org.apache.log4j.Level;
-
 import com.mui.MavenCommonContext;
-import com.mui.MavenGUILauncher;
-import com.mui.integration.MavenIntegration;
-import com.mui.integration.impl.MavenIntegrationImpl;
 import com.mui.launch.GuiLauncher;
 import com.mui.logger.TextAreaLogAppender;
 
 public class TestFrame extends JFrame{
+	
+	
 	private static MavenCommonContext context = MavenCommonContext.getInstance();
+	
     /** Creates new form NewJFrame */
     public TestFrame() {
         initComponents();
