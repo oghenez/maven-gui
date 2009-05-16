@@ -53,6 +53,7 @@ import org.codehaus.plexus.util.cli.CommandLineUtils;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 
 import com.mui.integration.MavenSystemProperties;
+import com.mui.logger.MavenLogger;
 import com.mui.logger.TextAreaLoggerManager;
 import com.mui.monitor.BatchModeProgressDownloadMonitor;
 import com.mui.monitor.ProgressDownloadMonitor;
@@ -121,7 +122,7 @@ public class MavenGui {
 		boolean showErrors = debug || commandLine.hasOption(CLIManager.ERRORS);
 
 		if (showErrors) {
-			System.out.println("+ Error stacktraces are turned on.");
+			MavenLogger.info("+ Error stacktraces are turned on.");
 		}
 
 		// ----------------------------------------------------------------------
@@ -164,6 +165,7 @@ public class MavenGui {
 
 		try {
 			settings = buildSettings(commandLine);
+			settings.setLocalRepository("D:\\TOOLS\\LOCAL\\REPO");
 		} catch (SettingsConfigurationException e) {
 			showError("Error reading settings.xml: " + e.getMessage(), e,
 					showErrors);
@@ -394,7 +396,7 @@ public class MavenGui {
 
 		if(userSettingsPath == null || userSettingsPath.equals("")){
 			//TODO: Need to remove with constants
-			userSettingsPath = "D:\\TOOLS\\maven-2.0.9\\conf\\settings.xml";
+			userSettingsPath = "D:\\TOOLS\\maven-2.0.8\\conf\\settings.xml";
 		}
 		
 		Settings settings = null;
@@ -563,22 +565,22 @@ public class MavenGui {
 				properties.load(resourceAsStream);
 
 				if (properties.getProperty("builtOn") != null) {
-					System.out.println("Maven version: "
+					MavenLogger.info("Maven version: "
 							+ properties.getProperty("version", "unknown")
 							+ " built on " + properties.getProperty("builtOn"));
 				} else {
-					System.out.println("Maven version: "
+					MavenLogger.info("Maven version: "
 							+ properties.getProperty("version", "unknown"));
 				}
 			} else {
-				System.out.println("Maven version: unknown");
+				MavenLogger.info("Maven version: unknown");
 			}
 
-			System.out.println("Java version: "
+			MavenLogger.info("Java version: "
 					+ System.getProperty("java.version",
 							"<unknown java version>"));
 
-			System.out.println("OS name: \"" + Os.OS_NAME + "\" version: \""
+			MavenLogger.info("OS name: \"" + Os.OS_NAME + "\" version: \""
 					+ Os.OS_VERSION + "\" arch: \"" + Os.OS_ARCH
 					+ "\" Family: \"" + Os.OS_FAMILY + "\"");
 
@@ -760,7 +762,7 @@ public class MavenGui {
 			for (int i = 0; i < args.length; i++) {
 				String arg = args[i];
 
-				// System.out.println( "Processing raw arg: " + arg );
+				// MavenLogger.info( "Processing raw arg: " + arg );
 
 				boolean addedToBuffer = false;
 
@@ -770,7 +772,7 @@ public class MavenGui {
 					// this is for the case: "-Dfoo=bar "-Dfoo2=bar two" (note
 					// the first unterminated quote)
 					if (currentArg != null) {
-						// System.out.println( "Flushing last arg buffer: \'" +
+						// MavenLogger.info( "Flushing last arg buffer: \'" +
 						// currentArg + "\' to cleaned list." );
 						cleaned.add(currentArg.toString());
 					}
@@ -790,7 +792,7 @@ public class MavenGui {
 						// if this is the case of "-Dfoo=bar", then we need to
 						// adjust the buffer.
 						if (addedToBuffer) {
-							// System.out.println(
+							// MavenLogger.info(
 							// "Adjusting argument already appended to the arg buffer."
 							// );
 							currentArg.setLength(currentArg.length() - 1);
@@ -798,7 +800,7 @@ public class MavenGui {
 						// otherwise, we trim the trailing " and append to the
 						// buffer.
 						else {
-							// System.out.println( "Appending arg part: \'" +
+							// MavenLogger.info( "Appending arg part: \'" +
 							// cleanArgPart +
 							// "\' with preceding space to arg buffer." );
 							// TODO: introducing a space here...not sure what
@@ -806,20 +808,20 @@ public class MavenGui {
 							currentArg.append(' ').append(cleanArgPart);
 						}
 
-						// System.out.println(
+						// MavenLogger.info(
 						// "Flushing completed arg buffer: \'" + currentArg +
 						// "\' to cleaned list." );
 
 						// we're done with this argument, so add it.
 						cleaned.add(currentArg.toString());
 					} else {
-						// System.out.println( "appending cleaned arg: \'" +
+						// MavenLogger.info( "appending cleaned arg: \'" +
 						// cleanArgPart + "\' directly to cleaned list." );
 						// this is a simple argument...just add it.
 						cleaned.add(cleanArgPart);
 					}
 
-					// System.out.println( "Clearing arg buffer." );
+					// MavenLogger.info( "Clearing arg buffer." );
 					// the currentArg MUST be finished when this completes.
 					currentArg = null;
 					continue;
@@ -836,13 +838,13 @@ public class MavenGui {
 					// append to the argument we're building, collapsing
 					// whitespace to a single space.
 					if (currentArg != null) {
-						// System.out.println( "Append unquoted arg part: \'" +
+						// MavenLogger.info( "Append unquoted arg part: \'" +
 						// arg + "\' to arg buffer." );
 						currentArg.append(' ').append(arg);
 					}
 					// this is a loner, just add it directly.
 					else {
-						// System.out.println( "Append unquoted arg part: \'" +
+						// MavenLogger.info( "Append unquoted arg part: \'" +
 						// arg + "\' directly to cleaned list." );
 						cleaned.add(arg);
 					}
@@ -851,7 +853,7 @@ public class MavenGui {
 
 			// clean up.
 			if (currentArg != null) {
-				// System.out.println( "Adding unterminated arg buffer: \'" +
+				// MavenLogger.info( "Adding unterminated arg buffer: \'" +
 				// currentArg + "\' to cleaned list." );
 				cleaned.add(currentArg.toString());
 			}
@@ -864,7 +866,7 @@ public class MavenGui {
 				// original array through
 				cleanArgs = args;
 			} else {
-				// System.out.println( "Cleaned argument list:\n" + cleaned );
+				// MavenLogger.info( "Cleaned argument list:\n" + cleaned );
 				cleanArgs = (String[]) cleaned.toArray(new String[cleanedSz]);
 			}
 
@@ -872,7 +874,7 @@ public class MavenGui {
 		}
 
 		public void displayHelp() {
-			System.out.println();
+			MavenLogger.info("");
 
 			HelpFormatter formatter = new HelpFormatter();
 			formatter.printHelp("mvn [options] [<goal(s)>] [<phase(s)>]",

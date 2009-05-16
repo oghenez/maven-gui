@@ -26,7 +26,7 @@ public abstract class AbstractProgressDownloadMonitor extends
 	}
 
 	public void transferError(TransferEvent transferEvent) {
-		transferEvent.getException().printStackTrace();
+		MavenLogger.error("", transferEvent.getException());
 	}
 
 	public void transferInitiated(TransferEvent transferEvent) {
