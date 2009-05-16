@@ -22,14 +22,16 @@ public class GuiLauncher {
 	private int exitCode;
 	protected ClassLoader systemClassLoader;
 
-	public static void main(String[] args) {
+	public static int main(String[] args) {
+		int exitCode = -1;
 		try {
-			int exitCode = mainWithExitCode(args);
+			exitCode = mainWithExitCode(args);
 			//System.exit(exitCode);
 		} catch (Exception e) {
 			e.printStackTrace();
-			//System.exit(100);
+			return exitCode;
 		}
+		return exitCode;
 	}
 
 	public static int mainWithExitCode(String args[]) throws Exception {

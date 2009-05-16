@@ -15,7 +15,7 @@ public abstract class AbstractProgressDownloadMonitor extends
 
 	}
 
-	public void transferCompleted(TransferEvent transferEvent) {
+	/*public void transferCompleted(TransferEvent transferEvent) {
 		long contentLength = transferEvent.getResource().getContentLength();
         if ( contentLength != WagonConstants.UNKNOWN_LENGTH )
         {
@@ -23,7 +23,7 @@ public abstract class AbstractProgressDownloadMonitor extends
             String l = contentLength >= 1024 ? ( contentLength / 1024 ) + "K" : contentLength + "b";
             MavenLogger.info( l + " " + type );
         }
-	}
+	}*/
 
 	public void transferError(TransferEvent transferEvent) {
 		MavenLogger.error("", transferEvent.getException());

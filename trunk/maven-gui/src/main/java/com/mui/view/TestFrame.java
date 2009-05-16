@@ -13,6 +13,7 @@ import org.apache.log4j.Level;
 import com.mui.MavenCommonContext;
 import com.mui.launch.GuiLauncher;
 import com.mui.logger.MavenLogger;
+import com.mui.logger.MavenProgressMonitor;
 import com.mui.logger.TextAreaLogAppender;
 
 public class TestFrame extends JFrame{
@@ -28,6 +29,9 @@ public class TestFrame extends JFrame{
     private void initLogger() {
 		TextAreaLogAppender device = new TextAreaLogAppender(this.outputTextArea);
 		context.textAreaLogAppender = device;
+		context.mavenProgressMonitor = new MavenProgressMonitor(
+				downloadProgressBar, downloadLabel);
+		
 	}
 
     private void initComponents() {
@@ -35,8 +39,8 @@ public class TestFrame extends JFrame{
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        baseDirTextField = new javax.swing.JTextField();
-        cmdTextField = new javax.swing.JTextField();
+        baseDirTextField = new javax.swing.JTextField("F:\\MAVEN_GUI\\maven-2.0.9-src");
+        cmdTextField = new javax.swing.JTextField("install -Dmaven.test.skip=true");
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         outputTextArea = new javax.swing.JTextArea();
@@ -63,7 +67,7 @@ public class TestFrame extends JFrame{
         outputTextArea.setRows(5);
         jScrollPane1.setViewportView(outputTextArea);
 
-        downloadLabel.setFont(new java.awt.Font("Arial Narrow", 0, 12)); // NOI18N
+        //downloadLabel.setFont(new java.awt.Font("Arial Narrow", 0, 12)); // NOI18N
         downloadLabel.setForeground(new java.awt.Color(0, 0, 255));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -248,7 +252,8 @@ public class TestFrame extends JFrame{
 			System.setProperty("user.dir", baseDirTextField.getText());
 			String cmdLine = cmdTextField.getText();
 			String[] args = cmdLine.split(" ");
-			GuiLauncher.main(args);
+			MavenTestWorker worker = new MavenTestWorker(baseDirTextField.getText(), args);
+			worker.execute();
 		}
 			
 	}

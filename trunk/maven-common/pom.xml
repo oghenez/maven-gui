@@ -23,7 +23,8 @@
 	</dependencies>
 
 	<properties>
-		<libs.dir>D:/SVN_HOME/MY_PROJECTS/MAVEN_GUI/trunk/libs</libs.dir>
+		<!--		<libs.dir>D:/SVN_HOME/MY_PROJECTS/MAVEN_GUI/trunk/libs</libs.dir>-->
+		<libs.dir>F:/SVN_HOME/MAVEN_GUI/trunk/libs</libs.dir>
 	</properties>
 
 

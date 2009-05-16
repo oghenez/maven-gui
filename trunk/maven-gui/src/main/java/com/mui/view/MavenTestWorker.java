@@ -10,7 +10,7 @@ public class MavenTestWorker extends SwingWorker<Integer, String>{
 	private final String[] commandArgs;
 	
 	public MavenTestWorker() {
-		this.baseDir = "NA";
+		this.baseDir = System.getProperty("user.home");
 		this.commandArgs = new String[]{};
 	}
 	
@@ -21,8 +21,7 @@ public class MavenTestWorker extends SwingWorker<Integer, String>{
 
 	@Override
 	protected Integer doInBackground() throws Exception {
-		GuiLauncher.main(commandArgs);
-		return 0;
+		return GuiLauncher.main(commandArgs);
 	}
 	
 	
