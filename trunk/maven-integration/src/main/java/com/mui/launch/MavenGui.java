@@ -52,7 +52,10 @@ import org.codehaus.plexus.util.Os;
 import org.codehaus.plexus.util.cli.CommandLineUtils;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 
+import com.mui.integration.MavenSystemProperties;
 import com.mui.logger.TextAreaLoggerManager;
+import com.mui.monitor.BatchModeProgressDownloadMonitor;
+import com.mui.monitor.ProgressDownloadMonitor;
 import com.mui.*;
 
 public class MavenGui {
@@ -270,9 +273,9 @@ public class MavenGui {
 		WagonManager wagonManager = (WagonManager) embedder
 				.lookup(WagonManager.ROLE);
 		if (interactive) {
-			wagonManager.setDownloadMonitor(new ConsoleDownloadMonitor());
+			wagonManager.setDownloadMonitor(new ProgressDownloadMonitor());
 		} else {
-			wagonManager.setDownloadMonitor(new BatchModeDownloadMonitor());
+			wagonManager.setDownloadMonitor(new BatchModeProgressDownloadMonitor());
 		}
 
 		wagonManager.setInteractive(interactive);
@@ -290,6 +293,7 @@ public class MavenGui {
 		ArtifactRepository localRepository = createLocalRepository(embedder,
 				settings, commandLine);
 
+		//TODO: need to take the given value
 		File userDir = new File(System.getProperty("user.dir"));
 
 		request = new DefaultMavenExecutionRequest(localRepository, settings,
@@ -388,6 +392,11 @@ public class MavenGui {
 					.getOptionValue(CLIManager.ALTERNATE_USER_SETTINGS);
 		}
 
+		if(userSettingsPath == null || userSettingsPath.equals("")){
+			//TODO: Need to remove with constants
+			userSettingsPath = "D:\\TOOLS\\maven-2.0.9\\conf\\settings.xml";
+		}
+		
 		Settings settings = null;
 
 		MavenSettingsBuilder settingsBuilder = (MavenSettingsBuilder) embedder
@@ -411,6 +420,8 @@ public class MavenGui {
 			if (settings == null) {
 				settings = settingsBuilder.buildSettings();
 			}
+			
+			
 		} catch (IOException e) {
 			throw new SettingsConfigurationException(
 					"Error reading settings file", e);

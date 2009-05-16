@@ -21,7 +21,7 @@ public class GuiLauncher {
 	protected ClassLoader systemClassLoader;
 
 	public static void main(String[] args) {
-		args = new String[]{"install"};
+		args = new String[]{"install", "-Dmaven.test.skip=true"};
 		try {
 			int exitCode = mainWithExitCode(args);
 			//System.exit(exitCode);

@@ -9,11 +9,7 @@ public class MavenCommonContext {
 
 	
 	public TextAreaLogAppender textAreaLogAppender;
-	
-	
-	
-	
-	
+		
 	
 	
 	private static MavenCommonContext instance;
