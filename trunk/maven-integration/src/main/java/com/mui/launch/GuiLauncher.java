@@ -12,6 +12,8 @@ import org.codehaus.classworlds.ConfigurationException;
 import org.codehaus.classworlds.DuplicateRealmException;
 import org.codehaus.classworlds.NoSuchRealmException;
 
+import com.mui.logger.MavenLogger;
+
 public class GuiLauncher {
 
 	protected String mainClassName;
@@ -21,7 +23,6 @@ public class GuiLauncher {
 	protected ClassLoader systemClassLoader;
 
 	public static void main(String[] args) {
-		args = new String[]{"install", "-Dmaven.test.skip=true"};
 		try {
 			int exitCode = mainWithExitCode(args);
 			//System.exit(exitCode);
@@ -43,14 +44,11 @@ public class GuiLauncher {
 			ClassRealm realm = guiLauncher.getWorld().getRealm(
 					guiLauncher.getMainRealmName());
 			java.net.URL constituents[] = realm.getConstituents();
-			System.out
-					.println("---------------------------------------------------");
+			MavenLogger.info("---------------------------------------------------");
 			for (int i = 0; i < constituents.length; i++)
-				System.out
-						.println("constituent[" + i + "]: " + constituents[i]);
+				MavenLogger.info("constituent[" + i + "]: " + constituents[i]);
 
-			System.out
-					.println("---------------------------------------------------");
+			MavenLogger.info("---------------------------------------------------");
 			Throwable t = e.getTargetException();
 			if (t instanceof Exception)
 				throw (Exception) t;
