@@ -86,26 +86,24 @@ public class MavenGui {
 		try {
 			commandLine = cliManager.parse(args);
 		} catch (ParseException e) {
-			System.err.println("Unable to parse command line options: "
-					+ e.getMessage());
+			MavenLogger.error("Unable to parse command line options: ",e);
 			cliManager.displayHelp();
 			return 1;
 		}
 
 		// TODO: maybe classworlds could handle this requirement...
 		if ("1.4".compareTo(System.getProperty("java.specification.version")) > 0) {
-			System.err
-					.println("Sorry, but JDK 1.4 or above is required to execute Maven. You appear to be using "
+			MavenLogger.error("Sorry, but JDK 1.4 or above is required to execute Maven. You appear to be using "
 							+ "Java:");
-			System.err.println("java version \""
+			MavenLogger.error("java version \""
 					+ System.getProperty("java.version",
 							"<unknown java version>") + "\"");
-			System.err.println(System.getProperty("java.runtime.name",
+			MavenLogger.error(System.getProperty("java.runtime.name",
 					"<unknown runtime name>")
 					+ " (build "
 					+ System.getProperty("java.runtime.version",
 							"<unknown runtime version>") + ")");
-			System.err.println(System.getProperty("java.vm.name",
+			MavenLogger.error(System.getProperty("java.vm.name",
 					"<unknown vm name>")
 					+ " (build "
 					+ System.getProperty("java.vm.version",
@@ -412,8 +410,7 @@ public class MavenGui {
 						&& !userSettingsFile.isDirectory()) {
 					settings = settingsBuilder.buildSettings(userSettingsFile);
 				} else {
-					System.out
-							.println("WARNING: Alternate user settings file: "
+					MavenLogger.info("WARNING: Alternate user settings file: "
 									+ userSettingsPath
 									+ " is invalid. Using default path.");
 				}
@@ -544,11 +541,9 @@ public class MavenGui {
 	}
 
 	private static void showError(String message, Exception e, boolean show) {
-		System.err.println(message);
+		MavenLogger.error(message);
 		if (show) {
-			System.err.println("Error stacktrace:");
-
-			e.printStackTrace();
+			MavenLogger.error("Error stacktrace:\n", e);
 		}
 	}
 
@@ -585,7 +580,7 @@ public class MavenGui {
 					+ "\" Family: \"" + Os.OS_FAMILY + "\"");
 
 		} catch (IOException e) {
-			System.err.println("Unable determine version from JAR file: "
+			MavenLogger.error("Unable determine version from JAR file: "
 					+ e.getMessage());
 		}
 	}

@@ -20,10 +20,10 @@ public class ProgressDownloadMonitor extends AbstractProgressDownloadMonitor {
         complete = 0;
         
         
-        if(context.mavenProgressMonitor != null){
+        /*if(context.mavenProgressMonitor != null){
         	context.mavenProgressMonitor.showMessage(message + ": " + url + "/" 
         			+ transferEvent.getResource().getName());
-        }
+        }*/
         
     }
 
@@ -47,9 +47,9 @@ public class ProgressDownloadMonitor extends AbstractProgressDownloadMonitor {
         {
         	MavenLogger.info( complete + "/" + ( total == WagonConstants.UNKNOWN_LENGTH ? "?" : total + "b" ) + "\r" );
         }*/
-        if(context.mavenProgressMonitor != null){
+        /*if(context.mavenProgressMonitor != null){
         	context.mavenProgressMonitor.showProgress(total, complete);
-        }
+        }*/
         
     }
 
@@ -60,9 +60,9 @@ public class ProgressDownloadMonitor extends AbstractProgressDownloadMonitor {
             String type = ( transferEvent.getRequestType() == TransferEvent.REQUEST_PUT ? "uploaded" : "downloaded" );
             String l = contentLength >= 1024 ? ( contentLength / 1024 ) + "K" : contentLength + "b";
             //MavenLogger.info( l + " " + type );
-            if(context.mavenProgressMonitor != null){
+            /*if(context.mavenProgressMonitor != null){
             	context.mavenProgressMonitor.showMessage( l + " " + type);
-            }
+            }*/
         }
 	}
     

@@ -1,7 +1,7 @@
 package com.mui;
 
 
-import com.mui.logger.MavenProgressMonitor;
+//import com.mui.logger.MavenProgressMonitor;
 import com.mui.logger.TextAreaLogAppender;
 
 
@@ -11,7 +11,7 @@ public class MavenCommonContext {
 
 	
 	public TextAreaLogAppender textAreaLogAppender;
-	public MavenProgressMonitor mavenProgressMonitor;
+	//public MavenProgressMonitor mavenProgressMonitor;
 	
 	
 	private static MavenCommonContext instance;
