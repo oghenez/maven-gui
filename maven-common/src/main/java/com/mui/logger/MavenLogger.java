@@ -26,6 +26,10 @@ public class MavenLogger{
         logger.error(s);
     }
 
+    public static void error(final String s) {
+        logger.error(s);
+    }
+    
     public static void logError(final Throwable ex) {
         logger.fatal(new String(), ex);
     }
