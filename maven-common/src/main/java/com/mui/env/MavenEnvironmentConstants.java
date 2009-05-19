@@ -16,5 +16,4 @@ public interface MavenEnvironmentConstants {
     String USER_HOME_VAR_NAME = "USER_HOME";
     String BASE_DIR_VAR_NAME = "USER_DIR";
 
-    String MAVEN_HOME_VAR_NAME = "MAVEN_HOME";
 }
