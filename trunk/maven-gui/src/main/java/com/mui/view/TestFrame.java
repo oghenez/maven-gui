@@ -13,7 +13,7 @@ import org.apache.log4j.Level;
 import com.mui.MavenCommonContext;
 import com.mui.launch.GuiLauncher;
 import com.mui.logger.MavenLogger;
-//import com.mui.logger.MavenProgressMonitor;
+import com.mui.logger.MavenProgressMonitor;
 import com.mui.logger.TextAreaLogAppender;
 
 public class TestFrame extends JFrame{
@@ -29,8 +29,8 @@ public class TestFrame extends JFrame{
     private void initLogger() {
 		TextAreaLogAppender device = new TextAreaLogAppender(this.outputTextArea);
 		context.textAreaLogAppender = device;
-//		context.mavenProgressMonitor = new MavenProgressMonitor(
-//				downloadProgressBar, downloadLabel);
+		context.mavenProgressMonitor = new MavenProgressMonitor(
+				downloadProgressBar, downloadLabel);
 		
 	}
 
@@ -250,7 +250,7 @@ public class TestFrame extends JFrame{
 				&& (cmdTextField.getText() != null && !cmdTextField.getText().equals(""))){
 			MavenLogger.init(new TextAreaLogAppender(outputTextArea), Level.ALL);
 			System.setProperty("user.dir", baseDirTextField.getText());
-			File f = new File("D:/\"Program Files\"/Java/jdk1.6.0");
+			File f = new File("D:\\TOOLS\\Java\\jdk1.6.0_06\\bin");
 			boolean b = f.exists();
 			if(!f.exists()){
 				System.out.println("jhkasdjfh ksjdfhkjsfh");

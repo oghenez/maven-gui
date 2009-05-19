@@ -19,11 +19,14 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.12</version>
+			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
 
 	<properties>
-		<!--		<libs.dir>D:/SVN_HOME/MY_PROJECTS/MAVEN_GUI/trunk/libs</libs.dir>-->
+		<!--
+			<libs.dir>D:/SVN_HOME/MY_PROJECTS/MAVEN_GUI/trunk/libs</libs.dir>
+		-->
 		<libs.dir>F:/SVN_HOME/MAVEN_GUI/trunk/libs</libs.dir>
 	</properties>
 
@@ -63,6 +66,28 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<archive>
+						<manifest>
+							
+						</manifest>
+					</archive>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 		<extensions>
 			<extension>
@@ -76,5 +101,7 @@
 				<version>1.0-beta-2</version>
 			</extension>
 		</extensions>
+
+
 	</build>
 </project>
