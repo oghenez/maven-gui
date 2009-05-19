@@ -250,6 +250,13 @@ public class TestFrame extends JFrame{
 				&& (cmdTextField.getText() != null && !cmdTextField.getText().equals(""))){
 			MavenLogger.init(new TextAreaLogAppender(outputTextArea), Level.ALL);
 			System.setProperty("user.dir", baseDirTextField.getText());
+			File f = new File("D:/\"Program Files\"/Java/jdk1.6.0");
+			boolean b = f.exists();
+			if(!f.exists()){
+				System.out.println("jhkasdjfh ksjdfhkjsfh");
+			}
+			System.setProperty("java.home", f.getAbsolutePath());
+			System.out.println(System.getProperty("java.home"));
 			String cmdLine = cmdTextField.getText();
 			String[] args = cmdLine.split(" ");
 			MavenTestWorker worker = new MavenTestWorker(baseDirTextField.getText(), args);
