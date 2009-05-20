@@ -54,13 +54,11 @@
 			<groupId>com.mui</groupId>
 			<artifactId>maven-common</artifactId>
 			<version>1.0-SNAPSHOT</version>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.mui</groupId>
 			<artifactId>maven-integration</artifactId>
 			<version>1.0-SNAPSHOT</version>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.fife.plaf</groupId>
@@ -83,18 +81,11 @@
 			<scope>system</scope>
 			<systemPath>${libs.dir}/tinylaf.jar</systemPath>
 		</dependency>
-		<dependency>
-			<groupId>maven.uber</groupId>
-			<artifactId>maven-uber</artifactId>
-			<version>2.0.8</version>
-			<scope>system</scope>
-			<systemPath>${libs.dir}/maven-2.0.8-uber.jar</systemPath>
-		</dependency>
 	</dependencies>
 	
 	<properties>
-		<libs.dir>D:/SVN_HOME/MY_PROJECTS/MAVEN_GUI/trunk/libs</libs.dir>
-<!--		<libs.dir>F:/SVN_HOME/MAVEN_GUI/trunk/libs</libs.dir>-->
+<!--		<libs.dir>D:/SVN_HOME/MY_PROJECTS/MAVEN_GUI/trunk/libs</libs.dir>-->
+		<libs.dir>F:/SVN_HOME/MAVEN_GUI/trunk/libs</libs.dir>
 	</properties>
 	
 </project>

@@ -19,11 +19,12 @@ import org.codehaus.classworlds.ConfigurationException;
 import org.codehaus.classworlds.DuplicateRealmException;
 import org.codehaus.classworlds.NoSuchRealmException;
 
+import com.mui.env.MavenEnvironmentConstants;
+
 public class GuiConfigurator {
 
 	public static final String MAIN_CLASS_NAME = "com.mui.launch.MavenGui";
 	public static final String MAIN_REALM_NAME = "com.mui";
-	public static final String MAVEN_HOME = "c:\\conf";
 
 	private GuiLauncher guiLauncher;
 	private ClassWorld world;
@@ -56,13 +57,14 @@ public class GuiConfigurator {
 			foreignClassLoader = guiLauncher.getSystemClassLoader();
 			guiLauncher.setAppMain(MAIN_CLASS_NAME, MAIN_REALM_NAME);
 		}
-		System.setProperty("maven.home", MAVEN_HOME);
+		
 
 		curRealm = world.newRealm(MAIN_REALM_NAME, foreignClassLoader);
 		configuredRealms.put(MAIN_REALM_NAME, curRealm);
-		//TODO : need to change
-		String line = "c:/conf/lib/*.jar";
-		String constituent = "c:/conf/lib/*.jar";
+		
+		String constituent = (System.getProperty(MavenEnvironmentConstants.MAVEN_HOME_SYS_PROP_NAME) == null)
+			? "/conf/lib/*.jar"
+			: System.getProperty(MavenEnvironmentConstants.MAVEN_HOME_SYS_PROP_NAME)+"/conf/lib/*.jar";
 		if (constituent.indexOf("*") >= 0) {
 			loadGlob(constituent, curRealm);
 		} else {
