@@ -5,9 +5,7 @@ import java.awt.Font;
 import java.net.URL;
 
 public interface MavenGuiConstants {
-	String CONTEXT_FILE_NAME = "./maven_context.ctx";
 	
-	String PROPERTIES_FILE_NAME = "./maven_env.properties";
 	
 	String NA = "NA";
 

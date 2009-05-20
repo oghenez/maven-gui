@@ -52,6 +52,7 @@ import org.codehaus.plexus.util.Os;
 import org.codehaus.plexus.util.cli.CommandLineUtils;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 
+import com.mui.env.MavenEnvironmentConstants;
 import com.mui.integration.MavenSystemProperties;
 import com.mui.logger.MavenLogger;
 import com.mui.logger.TextAreaLoggerManager;
@@ -163,7 +164,6 @@ public class MavenGui {
 
 		try {
 			settings = buildSettings(commandLine);
-			settings.setLocalRepository("D:\\TOOLS\\LOCAL\\REPO");
 		} catch (SettingsConfigurationException e) {
 			showError("Error reading settings.xml: " + e.getMessage(), e,
 					showErrors);
@@ -357,14 +357,12 @@ public class MavenGui {
 		}
 
 		if (commandLine.hasOption(CLIManager.CHECKSUM_FAILURE_POLICY)) {
-			System.out
-					.println("+ Enabling strict checksum verification on all artifact downloads.");
+			MavenLogger.info("+ Enabling strict checksum verification on all artifact downloads.");
 
 			artifactRepositoryFactory
 					.setGlobalChecksumPolicy(ArtifactRepositoryPolicy.CHECKSUM_POLICY_FAIL);
 		} else if (commandLine.hasOption(CLIManager.CHECKSUM_WARNING_POLICY)) {
-			System.out
-					.println("+ Disabling strict checksum verification on all artifact downloads.");
+			MavenLogger.info("+ Disabling strict checksum verification on all artifact downloads.");
 
 			artifactRepositoryFactory
 					.setGlobalChecksumPolicy(ArtifactRepositoryPolicy.CHECKSUM_POLICY_WARN);
@@ -393,8 +391,9 @@ public class MavenGui {
 		}
 
 		if(userSettingsPath == null || userSettingsPath.equals("")){
-			//TODO: Need to remove with constants
-			userSettingsPath = "D:\\TOOLS\\maven-2.0.8\\conf\\settings.xml";
+			userSettingsPath = 
+				context.mavenEnvironmentVariables.getValue(MavenEnvironmentConstants.MAVEN_HOME_ENV_VAR_NAME)
+					+ "\\conf\\settings.xml";
 		}
 		
 		Settings settings = null;
@@ -474,8 +473,7 @@ public class MavenGui {
 						e.getValue().toString());
 			}
 		} catch (IOException e) {
-			System.err
-					.println("Error getting environment vars for profile activation: "
+			MavenLogger.error("Error getting environment vars for profile activation: "
 							+ e);
 		}
 
