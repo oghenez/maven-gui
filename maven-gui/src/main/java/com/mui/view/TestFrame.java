@@ -42,6 +42,8 @@ MavenGuiConstants{
 	public static void boot() throws UnknownVariableException,
 			ContextLoadException, BootLoaderException, IOException {
 		loadInitialContext();
+		if(context.mavenEnvironmentVariables == null)
+			context.mavenEnvironmentVariables = new MavenEnvironmentVariables();
 		context.mavenEnvironmentVariables = loadEnvironmentVariavles();
 	}
 
@@ -58,13 +60,15 @@ MavenGuiConstants{
 		}
 
 		if (MAVEN_HOME != null && MAVEN_HOME.trim().length() > 0) {
+			File h = new File(MAVEN_HOME);
 			initialVars.addEnvironmentVariable(MAVEN_HOME_ENV_VAR_NAME,
-					MAVEN_HOME, true);
+					h.getAbsolutePath(), true);
 		} else {
 			MAVEN_HOME = sysEnvMap.get(MAVEN_HOME_ENV_VAR_NAME);
 			if (MAVEN_HOME != null && MAVEN_HOME.trim().length() > 0) {
+				File h = new File(MAVEN_HOME);
 				initialVars.addEnvironmentVariable(MAVEN_HOME_ENV_VAR_NAME,
-						MAVEN_HOME, true);
+						h.getAbsolutePath(), true);
 			} else {
 				MAVEN_HOME = DEFAULT_MAVEN_HOME;
 				File home = new File(DEFAULT_MAVEN_HOME);
@@ -95,10 +99,11 @@ MavenGuiConstants{
 				throw new UnknownVariableException("JAVA_HOME is not set.");
 			}
 		}
-		System.setProperty(JAVA_HOME_SYS_PROP_NAME, JAVA_HOME);
+		System.setProperty(JAVA_HOME_SYS_PROP_NAME, JAVA_HOME+"\\jre");
 		System.setProperty(USER_HOME_SYS_PROP_NAME, MAVEN_HOME);
 		System.setProperty(MAVEN_HOME_SYS_PROP_NAME, MAVEN_HOME);
-		System.out.println(MAVEN_HOME);
+		System.out.println(System.getProperty(JAVA_HOME_SYS_PROP_NAME));
+		System.out.println(JAVA_HOME);
 		return initialVars;
 	}
 
@@ -523,15 +528,10 @@ MavenGuiConstants{
 				.equals(""))
 				&& (cmdTextField.getText() != null && !cmdTextField.getText()
 						.equals(""))) {
-			MavenLogger
-					.init(new TextAreaLogAppender(outputTextArea), Level.ALL);
+			MavenLogger.init(new TextAreaLogAppender(outputTextArea), Level.ALL);
 			System.setProperty("user.dir", baseDirTextField.getText());
-			File f = new File("D:\\TOOLS\\Java\\jdk1.6.0_06\\bin");
-			boolean b = f.exists();
-			if (!f.exists()) {
-				System.out.println("jhkasdjfh ksjdfhkjsfh");
-			}
-			System.setProperty("java.home", f.getAbsolutePath());
+			System.setProperty("java.home", 
+					context.mavenEnvironmentVariables.getValue(JAVA_HOME_ENV_VAR_NAME)+"\\jre");
 			System.out.println(System.getProperty("java.home"));
 			String cmdLine = cmdTextField.getText();
 			String[] args = cmdLine.split(" ");

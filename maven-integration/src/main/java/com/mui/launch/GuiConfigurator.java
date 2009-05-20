@@ -61,10 +61,10 @@ public class GuiConfigurator {
 
 		curRealm = world.newRealm(MAIN_REALM_NAME, foreignClassLoader);
 		configuredRealms.put(MAIN_REALM_NAME, curRealm);
-		
-		String constituent = (System.getProperty(MavenEnvironmentConstants.MAVEN_HOME_SYS_PROP_NAME) == null)
-			? "/conf/lib/*.jar"
-			: System.getProperty(MavenEnvironmentConstants.MAVEN_HOME_SYS_PROP_NAME)+"/conf/lib/*.jar";
+		String constituent = System.getProperty(MavenEnvironmentConstants.MAVEN_HOME_SYS_PROP_NAME)+"/lib/*.jar";
+		/*String constituent = (System.getProperty(MavenEnvironmentConstants.MAVEN_HOME_SYS_PROP_NAME) == null)
+			? "/lib/*.jar"
+			: System.getProperty(MavenEnvironmentConstants.MAVEN_HOME_SYS_PROP_NAME)+"/lib/*.jar";*/
 		if (constituent.indexOf("*") >= 0) {
 			loadGlob(constituent, curRealm);
 		} else {

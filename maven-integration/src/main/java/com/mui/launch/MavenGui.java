@@ -43,6 +43,8 @@ import org.apache.maven.settings.RuntimeInfo;
 import org.apache.maven.settings.Settings;
 import org.codehaus.classworlds.ClassWorld;
 import org.codehaus.plexus.PlexusContainerException;
+import org.codehaus.plexus.component.composition.DefaultComponentComposerManager;
+import org.codehaus.plexus.component.repository.ComponentDescriptor;
 import org.codehaus.plexus.component.repository.exception.ComponentLifecycleException;
 import org.codehaus.plexus.component.repository.exception.ComponentLookupException;
 import org.codehaus.plexus.embed.Embedder;
@@ -395,9 +397,9 @@ public class MavenGui {
 				context.mavenEnvironmentVariables.getValue(MavenEnvironmentConstants.MAVEN_HOME_ENV_VAR_NAME)
 					+ "\\conf\\settings.xml";
 		}
-		
+		MavenLogger.info("Settings : " + userSettingsPath);
 		Settings settings = null;
-
+		
 		MavenSettingsBuilder settingsBuilder = (MavenSettingsBuilder) embedder
 				.lookup(MavenSettingsBuilder.ROLE);
 
@@ -528,13 +530,11 @@ public class MavenGui {
 	}
 
 	private static void showFatalError(String message, Exception e, boolean show) {
-		System.err.println("FATAL ERROR: " + message);
+		MavenLogger.error("FATAL ERROR: " + message);
 		if (show) {
-			System.err.println("Error stacktrace:");
-
-			e.printStackTrace();
+			MavenLogger.error("Error stacktrace:", e);
 		} else {
-			System.err.println("For more information, run with the -e flag");
+			MavenLogger.error("For more information, run with the -e flag");
 		}
 	}
 
