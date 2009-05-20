@@ -11,9 +11,9 @@ package com.mui.env;
  */
 public interface MavenEnvironmentConstants {
 	
-	String DEFAULT_MAVEN_HOME = ".";
-	String DEFAULT_CONF_DIR = "conf";
-	String DEFAULT_LIB_DIR = "conf/lib";
+	String DEFAULT_MAVEN_HOME = "home";
+	String DEFAULT_CONF_DIR = "home/conf";
+	String DEFAULT_LIB_DIR = "home/lib";
 	String DEFAULT_PROPERTIES_DIR = "setup";
 	String DEFAULT_CONTEXT_DIR = "context";
 	String DEFAULT_M2_DIR = "m2_home";
