@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xb:config xmlns:xb="http://xml.apache.org/xmlbeans/2004/02/xbean/config">
+
+    <xb:namespace uri="http://maven.apache.org/POM/4.0.0">
+        <xb:package>com.gs.xaven.bod.pom</xb:package>
+    </xb:namespace>
+	
+	<xb:namespace uri="http://maven.apache.org/SETTINGS/1.0.0">
+        <xb:package>com.gs.xaven.bod.settings</xb:package>
+    </xb:namespace>
+
+</xb:config>	
